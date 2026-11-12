@@ -1,10 +1,10 @@
 # 자료 관리
 
-제주 해커톤 프로그램은 [`제주 프로그램/`](제주%20프로그램/README.md)에 있습니다.
-
 해커톤마다 폴더를 하나씩 만들고, 해당 대회와 관련된 자료만 그 안에 보관합니다.
 
 ## 폴더 구성
+
+현재 정리된 제주 대회 자료: [`2026-jeju-ai-bigdata-agent-challenge/`](2026-jeju-ai-bigdata-agent-challenge/README.md)
 
 폴더 이름은 `<연도>-<대회명>`으로 작성합니다. 예: `2026-cheongdo-vibe-coding`
 
