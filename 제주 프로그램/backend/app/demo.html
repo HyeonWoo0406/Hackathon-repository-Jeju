@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>제주 가게 주간 장사 결산 · 데모</title><link rel="stylesheet" href="/demo.css"><script src="/demo.js" defer></script></head>
+<body><main><header><span>JEJU · WEEKLY REPORT</span><p id="health">AI 연결 확인 중</p></header><h1>지난 기록에서 찾는<br>우리 가게의 흐름</h1><p class="intro">애월 가상 카페 · 2026.11.02–11.08<br>가상 매출과 실제 공개 자료를 사용하는 시연입니다. 최신 현황이 아닙니다.</p>
+<label for="cases">살펴볼 가상 사례</label><select id="cases"></select>
+<section><p class="eyebrow">이번 주 결산</p><h2 id="verdict">자료를 읽는 중입니다.</h2><div id="metrics"></div><p>기준: 앞선 4주 · 비교에 사용할 수 있는 날짜만 계산</p><p id="limits"></p></section>
+<section><h2>궁금한 점을 물어보세요</h2><div class="chips"><button type="button">이번 주 매출을 요약해줘</button><button type="button">토요일은 어땠어?</button><button type="button">왜 매출이 줄었어?</button><button type="button">비 온 날은 언제야?</button></div><form id="ask"><label for="question">질문</label><input id="question" maxlength="500" required placeholder="결산에서 궁금한 내용을 적어 주세요"><button id="submit" type="submit">AI에게 질문하기</button></form><p id="mode" role="status"></p><div id="answer" aria-live="polite">질문을 입력하면 계산된 결산 근거를 바탕으로 답합니다.</div></section>
+<details><summary>요일별 수치와 자료 출처</summary><div id="days"></div><div id="sources"></div></details><footer>공개 시연용 · 자료 등록·수정·삭제는 제공하지 않습니다.<br>AI는 질문에 맞는 근거를 선택합니다. 매출 계산과 판정은 코드가 수행하며, 실제 원인을 확정하지 않습니다.</footer></main></body></html>

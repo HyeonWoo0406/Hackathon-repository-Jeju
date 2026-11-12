@@ -1,0 +1,5 @@
+{
+  "daily_call_cap": 100,
+  "targets": [],
+  "publication_lag_days": 4
+}
