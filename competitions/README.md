@@ -4,7 +4,7 @@
 
 ## 폴더 구성
 
-현재 정리된 제주 대회 자료: [`2026-jeju-ai-bigdata-agent-challenge/`](2026-jeju-ai-bigdata-agent-challenge/README.md)
+현재 정리된 제주 대회 정보: [`2026 제주 AI·빅데이터 활용 AI Agent 개발 챌린지`](2026-jeju-ai-bigdata-agent-challenge/README.md)
 
 폴더 이름은 `<연도>-<대회명>`으로 작성합니다. 예: `2026-cheongdo-vibe-coding`
 
