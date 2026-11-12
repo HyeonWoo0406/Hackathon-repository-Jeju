@@ -1,20 +1,39 @@
 # 2026 제주 AI·빅데이터 활용 AI Agent 개발 챌린지
 
-- **주관 기관:** 제주빅데이터센터 (사용자가 공유한 대회 안내 기준)
-- **플랫폼:** DAKER
-- **주제:** 제주 데이터 활용 AI Agent 개발
-- **공식 페이지:** [제주 AI·빅데이터 활용 AI Agent 개발 챌린지](https://daker.ai/public/hackathons/jeju-ai-bigdata-agent-challenge)
-- **제출 기간:** 2026-10-26 ~ 2026-11-20 10:00
+## 대회 개요
 
-세부 일정·규정은 [`01-announcements/`](01-announcements/README.md)에 정리했습니다. 공식 공고가 갱신될 수 있으므로 제출 전 공식 페이지에서 최신 내용을 확인하세요.
+- **관련 기관·데이터:** 제주빅데이터센터·제주데이터허브
+- **플랫폼:** [DAKER](https://daker.ai/public/hackathons/jeju-ai-bigdata-agent-challenge)
+- **공식 문의 게시판:** [대회 게시판](https://daker.ai/public/hackathons/jeju-ai-bigdata-agent-challenge?section=board)
+- **주제:** 제주빅데이터센터 및 제주데이터허브 데이터를 활용한 AI Agent 기반 서비스 개발
+- **참가 자격:** 일반인·학생 등 누구나 참가 가능
+- **제출 기간:** 2026-10-26 10:00 ~ 2026-11-20 10:00
+
+## 배경과 목적
+
+제주빅데이터센터와 제주데이터허브의 데이터 및 AI 도구를 활용해 데이터 탐색·분석을 자동화하는 AI Agent를 발굴합니다. IT 비전문가인 도민도 제주빅데이터센터에서 직접 실행하고 활용할 수 있도록 데이터 탐색부터 분석 결과 제공까지 수행하는 서비스를 개발하는 대회입니다.
+
+참가자는 제주빅데이터센터 또는 제주데이터허브 데이터 중 1종 이상을 활용해 분석 주제를 정하고, 그 주제에 맞는 AI Agent를 구현해야 합니다.
+
+## 주요 일정
+
+| 일정 | 내용 |
+|---|---|
+| 10월 26일 10:00 ~ 11월 20일 10:00 | 참가 접수, 기획서 및 최종 결과물 제출 |
+| 11월 23일 12:00 ~ 11월 27일 10:00 | 참가자 상호 평가 |
+| 11월 23일 12:00 ~ 11월 27일 23:59 | 내부 전문가 평가 |
+| 11월 30일 10:00 | 최종 수상팀 발표 |
+| 12월 7일 예정 | 발표 및 시상식, 제주테크노파크 |
+
+연도는 2026년입니다. 세부 규정과 변경 여부는 제출 전 공식 페이지에서 확인하세요.
 
 ## 자료 구조
 
-- [`01-announcements/`](01-announcements/README.md): 공고, 일정, 평가 기준, 규정
-- [`02-research/`](02-research/README.md): 문제 조사, 참고 자료, 인터뷰
-- [`03-planning/`](03-planning/README.md): 아이디어, 문제 정의, 요구사항
-- [`04-design/`](04-design/README.md): 화면 및 디자인 자료
-- [`05-development/`](05-development/README.md): 구현·기술 자료 위치 안내
-- [`06-submission/`](06-submission/README.md): 제출 형식 및 제출본
+- [`01-announcements/`](01-announcements/README.md): 일정, 참가·제출 규칙, 평가, 상금·혜택
+- [`02-research/`](02-research/README.md): 필수 데이터 조건, 데이터 출처와 이용 규정
+- [`03-planning/`](03-planning/README.md): 기획서 필수 항목
+- [`04-design/`](04-design/README.md): 사용성과 화면 설계 요구
+- [`05-development/`](05-development/README.md): 실행 환경, 기술·보안·검증 요구
+- [`06-submission/`](06-submission/README.md): 제출 경로와 제출물 체크리스트
 
 프로그램 소스는 대회 자료와 구분해 저장소 루트의 [`제주 프로그램/`](../../제주%20프로그램/README.md)에 둡니다.
