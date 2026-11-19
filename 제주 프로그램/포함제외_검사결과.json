@@ -1,0 +1,18 @@
+{
+  "included_files_before_manifest": 118,
+  "excluded": [
+    "existing databases",
+    "API keys and .env values",
+    "private sessions",
+    "logs",
+    "personal paths",
+    "virtualenv and node_modules",
+    "model/runtime binaries",
+    "old builds and archives"
+  ],
+  "sensitive_pattern_findings": 0,
+  "note": "Source allowlist and text-pattern check; not a universal privacy certification.",
+  "revision": "데이터 준비 안내 보강 v2",
+  "included_files": 121,
+  "data_guide": "weekly-report/데이터_목록.md"
+}

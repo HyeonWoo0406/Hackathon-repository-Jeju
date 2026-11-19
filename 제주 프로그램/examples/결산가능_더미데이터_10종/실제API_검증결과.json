@@ -1,0 +1,52 @@
+[
+  {
+    "file": "example-sales-01-steady-cafe.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  },
+  {
+    "file": "example-sales-02-growing-restaurant.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  },
+  {
+    "file": "example-sales-03-declining-retail.csv",
+    "state": "complete",
+    "verdict": "store_down"
+  },
+  {
+    "file": "example-sales-04-weekend-cafe.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  },
+  {
+    "file": "example-sales-05-weekday-restaurant.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  },
+  {
+    "file": "example-sales-06-saturday-drop.csv",
+    "state": "complete",
+    "verdict": "area"
+  },
+  {
+    "file": "example-sales-07-monday-closed.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  },
+  {
+    "file": "example-sales-08-wednesday-closed.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  },
+  {
+    "file": "example-sales-09-zero-recovery.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  },
+  {
+    "file": "example-sales-10-volatile-retail.csv",
+    "state": "complete",
+    "verdict": "store_up"
+  }
+]

@@ -1,60 +1,76 @@
-# 제주 버스 노선·시간대 수요 분석 에이전트
+# 제주 가게 주간 장사 결산 — 개발 산출물
 
-챌린지: 제주 AI·빅데이터 활용 AI Agent 개발 챌린지 (https://daker.ai/public/hackathons/jeju-ai-bigdata-agent-challenge)
+2026-11-19 현재 웹 소스입니다. 개인 자료를 제외한 제출본입니다.
+React 19 / TypeScript / Vite / Python FastAPI / SQLite / llama.cpp를 사용합니다.
 
-> 공개 저장소에는 합성 버스 노선·정류소 데이터와 소스 코드만 포함합니다.
-> 참가자 전용 XLSX, 실자료, API 키, 개인정보, 실행 산출물은 포함하지 않습니다.
+## 포함 및 제외
+소스·테스트·의존성 목록·실행 도구·합성 매출을 포함합니다.
+.env 실값, API 키, 기존 DB 전체, 브라우저 세션, 로그, 개인 경로, 가상환경,
+node_modules, 모델 파일, 실행 바이너리, 기존 빌드는 포함하지 않습니다.
+.env.example에는 환경 변수 이름만 들어 있습니다.
 
-## 팀
-- 팀명: HeadLine2
-- 팀장: 윤현우
-- 팀원: 라로스, 밥이다
+## 데이터 준비 필독
 
-## 목표
-제주도민과 비전문가가 버스 이용자 집계를 자연어로 탐색하고, 노선·시간대·요일·정류소·승하차·이용자 유형별 이용량을 표와 차트로 검토하도록 돕는다. `user_count`는 태그 기반 이용자 집계이지 차량 정원이나 잔여 좌석이 아니다. 이 프로젝트는 혼잡률·혼잡 예측·최적 배차를 제공하지 않는다.
+**[데이터_목록.md](데이터_목록.md)**에 필요한 5종 데이터, API 식별자·필드·조회 범위, 키 설정, 더미 결산 수집 명령, 저장 위치와 한도 대응을 정리했습니다. 반드시 함께 확인하세요.
 
-## 사용 흐름
-1. 자연어로 버스 이용량 질문 입력
-2. 카탈로그에서 노선별 또는 정류소별 데이터셋 선택
-3. 분석 기준별 이용자 수 합계와 요약 제공
-4. 출처, 데이터가 합성인지 실자료인지, 한계를 함께 표시
+## 새 Windows PC에서 실행
+Python 3.11과 Node.js 22 이상을 설치하고 weekly-report 폴더의 PowerShell에서 실행합니다.
 
-## 스택
-Python · Streamlit · pandas · LLM 제공자 추상화(mock 기본 / ollama 로컬 / openai 외부)
-
-## 구조
-```
-app.py                    Streamlit UI
-cli.py                    CLI 실행
-src/data_loader.py        데이터셋 카탈로그 + CSV 로더
-src/llm.py                LLMProvider, Mock/Ollama/OpenAI
-src/agent.py              질의→탐색→집계→요약
-data/sample_bus_routes.csv 합성 노선별 시연 데이터(실제 통계 아님)
-data/sample_bus_stops.csv  합성 정류소별 시연 데이터(실제 통계 아님)
-docs/                     제안서, 매뉴얼, 평가·데이터·AI 사용 명세
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r backend/requirements-lock.txt
+Copy-Item .env.example .env
+Push-Location frontend
+npm.cmd ci
+npm.cmd run build
+Pop-Location
+.\.venv\Scripts\python.exe scripts/init_submission.py
+.\.venv\Scripts\python.exe scripts/setup_model.py
 ```
 
-## 실행
+.env에는 본인이 발급받은 키를 입력합니다. 다운로드에는 인터넷이 필요하며
+모델·런타임은 대용량입니다. setup_model.py는 고정된 다운로드 파일의 해시를 확인합니다.
+설치 환경에 따라 잠금 의존성을 설치할 수 없다면 오류를 확인하고 호환성을 검토해야 합니다.
+이 제출본을 완전히 새 PC에 설치하는 과정은 별도로 검증하지 않았습니다.
+
+자료 수집은 다음 명령입니다. API 승인·제공처 한도·자료 제공 범위에 따라 달라집니다.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/collect_public.py --run
 ```
-cd jeju-ai-agent
-pip install -r requirements.txt
-copy .env.example .env
-python cli.py "시간대별 노선 이용량을 보여줘"
-streamlit run app.py
+
+서버_관리.cmd를 더블클릭하고 1번을 선택하면 로컬 웹·AI 서버를 실행합니다.
+http://127.0.0.1:8770 으로 접속하세요. 종료는 0번입니다.
+2번 외부 공유 기능에는 cloudflared를 별도 설치해야 합니다.
+현재 도구가 찾는 위치는 C:/Program Files (x86)/cloudflared/cloudflared.exe 입니다.
+외부 주소는 임시 주소이며 실행할 때 바뀔 수 있습니다.
+
+데이터수집_관리.cmd는 수집·로그·예약을 관리합니다.
+자동 수집 예약은 새 PC에서 메뉴 4번으로 등록합니다. PC 전원과 로그인이 필요합니다.
+
+## 중요한 시연 조건
+이 ZIP에는 기존 공개 자료 DB도 없습니다. 압축만 풀면 즉시 모든 결산이 가능한 것은 아닙니다.
+더미 CSV는 매출만 포함하며, 해당 지역·기간의 공개 자료는 별도 수집해야 합니다.
+검증에 사용한 범위는 애월읍 / 애월환승정류장(애월리) 0003291 / 2026-11-02 주간입니다.
+examples/결산가능_더미데이터_10종/사용방법.txt를 참고하세요.
+실제 운영 PC에서 10종 결산을 확인한 것이며, 신규 설치의 자료 확보를 보장하지 않습니다.
+제출 ZIP의 시연영상은 가상 매출과 당시 저장된 공개 자료로 녹화한 결과입니다.
+
+## 검증 명령
+```powershell
+.\.venv\Scripts\python.exe -m pytest backend/tests
+Push-Location frontend
+npm.cmd test
+npm.cmd run build
+Pop-Location
 ```
 
-질문 예시: “요일별 노선 이용량”, “정류소별 하차 이용자 수”, “이용자 유형별 이용량”. 현재 MVP는 그룹 기준 집계만 하며 자연어 기간·조건 필터는 지원하지 않는다.
+일부 scripts/verify_*.py는 서버·모델·수집된 자료가 있어야 실행되는 수동 검증 도구입니다.
+기존 scripts/prepare_demo.py는 data/app.db에서 공개 자료를 복사하는 과거 도구입니다.
+새 환경의 빈 DB 초기화에는 scripts/init_submission.py를 사용하세요.
 
-## 센터 PC
-- 목표 실행 환경: 제주빅데이터센터 PC Intel Core i7-8700 / GTX 1060 / 32GB RAM
-- 기본 mock은 외부 호출·GPU가 필요 없다. Ollama/OpenAI는 선택적 제공자이며 외부 제공자 사용 시 `docs/ai-usage-and-external-resources.md`를 확인한다.
-- API 키는 코드에 넣지 않고 `.env`로만 관리한다.
-
-## 데이터 안내
-- 전달받은 데이터명세서_kr.xlsx(2026-11-04 v13) 내용상 반출 가능 후보는 3-02 버스 노선별 이용 현황, 3-04 버스 정류소별 이용 현황이다. 원시 자료는 아직 제공되지 않았다.
-- **참가자 전용 데이터 목록(xlsx)은 저장소에 포함하지 않는다.** `*.xlsx`와 `data/private/`는 `.gitignore` 처리됨. 이용 조건과 반출 승인을 확인한 자료만 `data/private/`에 두고 `src/data_loader.py` 카탈로그에 등록한다.
-- 두 `sample_bus_*.csv`는 **합성 데이터**이며 실제 제주 통계가 아니다. 앱과 CLI 결과에 합성 자료임을 표시한다.
-- 5-02 일일 날씨 정보는 MVP 범위에서 제외하고 후속 연동 후보로만 둔다. 실제 원시 자료가 연결되기 전까지 통계·추세를 주장하지 않는다.
-
-## 평가·제출 정보
-평가 체크리스트와 제출 마감 등은 `docs/evaluation-checklist.md`, 제안서 요구 섹션은 `docs/proposal-outline.md`를 참고한다. 제안서 제출 마감: **2026-11-20 10:00**.
+## 구현 범위
+공개 자료가 부족하면 결산을 막고 자료 준비 요청을 받습니다.
+매출 단독 결산은 아직 구현하지 않았습니다.
+숫자와 판정은 코드로 계산하고 AI는 현재 결산의 검증된 근거를 사용합니다.
+지역 지표는 다른 가게의 실제 매출이 아니며 미래 예측이나 인과관계 확정을 하지 않습니다.

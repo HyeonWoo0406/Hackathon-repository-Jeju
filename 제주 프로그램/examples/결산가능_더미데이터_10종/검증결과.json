@@ -1,0 +1,172 @@
+[
+  {
+    "file": "example-sales-01-steady-cafe.csv",
+    "store": {
+      "name": "가상 꾸준한 카페",
+      "emd": "애월읍",
+      "industry": "카페",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 1799010,
+    "verdict": "우리 가게만 좋았던 주"
+  },
+  {
+    "file": "example-sales-02-growing-restaurant.csv",
+    "store": {
+      "name": "가상 매출 상승 음식점",
+      "emd": "애월읍",
+      "industry": "음식점",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 8586280,
+    "verdict": "우리 가게만 좋았던 주"
+  },
+  {
+    "file": "example-sales-03-declining-retail.csv",
+    "store": {
+      "name": "가상 매출 감소 소매점",
+      "emd": "애월읍",
+      "industry": "소매",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 2228210,
+    "verdict": "우리 가게만 줄어든 주"
+  },
+  {
+    "file": "example-sales-04-weekend-cafe.csv",
+    "store": {
+      "name": "가상 주말 상승 카페",
+      "emd": "애월읍",
+      "industry": "카페",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 3285220,
+    "verdict": "우리 가게만 좋았던 주"
+  },
+  {
+    "file": "example-sales-05-weekday-restaurant.csv",
+    "store": {
+      "name": "가상 평일 상승 음식점",
+      "emd": "애월읍",
+      "industry": "음식점",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 9145000,
+    "verdict": "우리 가게만 좋았던 주"
+  },
+  {
+    "file": "example-sales-06-saturday-drop.csv",
+    "store": {
+      "name": "가상 토요일 감소 소매점",
+      "emd": "애월읍",
+      "industry": "소매",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 3688260,
+    "verdict": "동네 전체 흐름"
+  },
+  {
+    "file": "example-sales-07-monday-closed.csv",
+    "store": {
+      "name": "가상 월요일 휴무 카페",
+      "emd": "애월읍",
+      "industry": "카페",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 1444100,
+    "verdict": "우리 가게만 좋았던 주"
+  },
+  {
+    "file": "example-sales-08-wednesday-closed.csv",
+    "store": {
+      "name": "가상 수요일 휴무 음식점",
+      "emd": "애월읍",
+      "industry": "음식점",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 4583330,
+    "verdict": "우리 가게만 좋았던 주"
+  },
+  {
+    "file": "example-sales-09-zero-recovery.csv",
+    "store": {
+      "name": "가상 영업 중 0원과 회복",
+      "emd": "애월읍",
+      "industry": "기타",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 680080,
+    "verdict": "우리 가게만 좋았던 주"
+  },
+  {
+    "file": "example-sales-10-volatile-retail.csv",
+    "store": {
+      "name": "가상 날마다 차이가 큰 소매점",
+      "emd": "애월읍",
+      "industry": "소매",
+      "stops": [
+        {
+          "id": "0003291",
+          "name": "애월환승정류장(애월리)"
+        }
+      ]
+    },
+    "week_start": "2026-11-02",
+    "total": 10770940,
+    "verdict": "우리 가게만 좋았던 주"
+  }
+]
