@@ -1,51 +1,60 @@
-# 제주 가게 주간 장사 결산
+# 제주 버스 노선·시간대 수요 분석 에이전트
 
-제주 소상공인이 본인 매출과 공개된 지역 지표를 주별로 비교해 보는 개발용 프로그램입니다. 비교 결과는 참고 정보이며, 매출 변화의 원인을 입증하지 않습니다.
+챌린지: 제주 AI·빅데이터 활용 AI Agent 개발 챌린지 (https://daker.ai/public/hackathons/jeju-ai-bigdata-agent-challenge)
 
-## 공개 저장소에 포함한 범위
+> 공개 저장소에는 합성 버스 노선·정류소 데이터와 소스 코드만 포함합니다.
+> 참가자 전용 XLSX, 실자료, API 키, 개인정보, 실행 산출물은 포함하지 않습니다.
 
-저장소에는 소스 코드, 테스트, 설치 설정, 문서, 그리고 명시적으로 가상 자료라고 표시한 예시 매출만 포함합니다. 실제 매출이나 방문자 자료, API 키, 데이터베이스, 방문자 세션, 로그, 모델 가중치, 실행 파일 및 빌드 결과물은 포함하지 않습니다.
+## 팀
+- 팀명: HeadLine2
+- 팀장: 윤현우
+- 팀원: 라로스, 밥이다
 
-일부 공공자료 기능을 쓰려면 각 제공처의 이용 신청과 키가 필요합니다. 제공처의 최신 이용 조건과 사용 권한을 확인한 뒤 사용하세요. 실제 API 키는 `.env`에만 저장하며 GitHub에 올리지 마세요.
+## 목표
+제주도민과 비전문가가 버스 이용자 집계를 자연어로 탐색하고, 노선·시간대·요일·정류소·승하차·이용자 유형별 이용량을 표와 차트로 검토하도록 돕는다. `user_count`는 태그 기반 이용자 집계이지 차량 정원이나 잔여 좌석이 아니다. 이 프로젝트는 혼잡률·혼잡 예측·최적 배차를 제공하지 않는다.
 
-## 개발 실행
+## 사용 흐름
+1. 자연어로 버스 이용량 질문 입력
+2. 카탈로그에서 노선별 또는 정류소별 데이터셋 선택
+3. 분석 기준별 이용자 수 합계와 요약 제공
+4. 출처, 데이터가 합성인지 실자료인지, 한계를 함께 표시
 
-필요 환경: Python 3.11 이상, Node.js/npm.
+## 스택
+Python · Streamlit · pandas · LLM 제공자 추상화(mock 기본 / ollama 로컬 / openai 외부)
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
-Copy-Item .env.example .env
-Push-Location frontend
-npm ci
-npm run build
-Pop-Location
-.\.venv\Scripts\python.exe run.py
+## 구조
+```
+app.py                    Streamlit UI
+cli.py                    CLI 실행
+src/data_loader.py        데이터셋 카탈로그 + CSV 로더
+src/llm.py                LLMProvider, Mock/Ollama/OpenAI
+src/agent.py              질의→탐색→집계→요약
+data/sample_bus_routes.csv 합성 노선별 시연 데이터(실제 통계 아님)
+data/sample_bus_stops.csv  합성 정류소별 시연 데이터(실제 통계 아님)
+docs/                     제안서, 매뉴얼, 평가·데이터·AI 사용 명세
 ```
 
-앱은 기본적으로 `http://127.0.0.1:8765`에서 실행됩니다. 제공처 키가 없거나 해당 기간 자료가 준비되지 않은 경우 일부 기능은 사용할 수 없습니다. `.env.example`을 `.env`로 복사한 뒤 필요한 키를 본인 환경에만 입력하세요.
-
-`collection-plan.example.json`은 빈 예시 설정입니다. 수집 작업을 사용하려면 복사해 `collection-plan.json`을 만들고, 본인이 권한을 확인한 지역·정류소를 설정하세요. 실제 설정 파일은 Git에서 제외됩니다. 수집 작업을 실행하기 전에 호출 제한과 제공처 이용 조건을 확인하세요.
-
-## 로컬 모델(선택)
-
-모델 가중치와 llama.cpp 실행 파일은 크기와 별도 라이선스가 있어 저장소에 포함하지 않았습니다. `scripts/setup_model.py`는 명시적으로 실행할 때 모델과 CPU 런타임을 공식 배포처에서 내려받고 SHA-256을 확인합니다. 내려받은 파일은 Git에 추가하지 마세요. 이 스크립트는 모델과 런타임 파일을 내려받을 뿐이며, `run.py`에서 사용하는 위치로의 배치는 별도로 확인해야 합니다. 모델 없이도 기본 계산 및 고정 문구 기능을 사용할 수 있습니다.
-
-## 검사
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest backend\tests -q
-npm --prefix frontend test
-npm --prefix frontend run build
+## 실행
+```
+cd jeju-ai-agent
+pip install -r requirements.txt
+copy .env.example .env
+python cli.py "시간대별 노선 이용량을 보여줘"
+streamlit run app.py
 ```
 
-## 주요 파일
+질문 예시: “요일별 노선 이용량”, “정류소별 하차 이용자 수”, “이용자 유형별 이용량”. 현재 MVP는 그룹 기준 집계만 하며 자연어 기간·조건 필터는 지원하지 않는다.
 
-- `backend/`: API, 계산, 자료 수집, 서버 테스트
-- `frontend/`: React/TypeScript 사용자 화면
-- `examples/sales/`: 가상 매출 예시
-- `scripts/`: 개발·검증 도구와 선택적 모델 설치
-- [데이터 목록](데이터_목록.md): 코드에서 사용하는 자료와 저장 항목
-- [로컬 실행 안내](데모_실행.md): 개발 서버 실행 방법
+## 센터 PC
+- 목표 실행 환경: 제주빅데이터센터 PC Intel Core i7-8700 / GTX 1060 / 32GB RAM
+- 기본 mock은 외부 호출·GPU가 필요 없다. Ollama/OpenAI는 선택적 제공자이며 외부 제공자 사용 시 `docs/ai-usage-and-external-resources.md`를 확인한다.
+- API 키는 코드에 넣지 않고 `.env`로만 관리한다.
 
-실제 데이터 기반 완성도, 제공처 권한, 외부 배포 설정은 각 환경에서 별도로 확인해야 합니다. 이 저장소는 제출 완료나 운영 서비스 배포를 의미하지 않습니다.
+## 데이터 안내
+- 전달받은 데이터명세서_kr.xlsx(2026-11-04 v13) 내용상 반출 가능 후보는 3-02 버스 노선별 이용 현황, 3-04 버스 정류소별 이용 현황이다. 원시 자료는 아직 제공되지 않았다.
+- **참가자 전용 데이터 목록(xlsx)은 저장소에 포함하지 않는다.** `*.xlsx`와 `data/private/`는 `.gitignore` 처리됨. 이용 조건과 반출 승인을 확인한 자료만 `data/private/`에 두고 `src/data_loader.py` 카탈로그에 등록한다.
+- 두 `sample_bus_*.csv`는 **합성 데이터**이며 실제 제주 통계가 아니다. 앱과 CLI 결과에 합성 자료임을 표시한다.
+- 5-02 일일 날씨 정보는 MVP 범위에서 제외하고 후속 연동 후보로만 둔다. 실제 원시 자료가 연결되기 전까지 통계·추세를 주장하지 않는다.
+
+## 평가·제출 정보
+평가 체크리스트와 제출 마감 등은 `docs/evaluation-checklist.md`, 제안서 요구 섹션은 `docs/proposal-outline.md`를 참고한다. 제안서 제출 마감: **2026-11-20 10:00**.
